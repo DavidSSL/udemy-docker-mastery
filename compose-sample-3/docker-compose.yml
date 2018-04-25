@@ -6,8 +6,9 @@ version: '2'
 services:
   proxy:
     build:
-      context: .
+      context: .  # setting the current directory as the path to use
       dockerfile: nginx.Dockerfile
+    image: nginx-reverse-proxy-custom # naming the custom image
     ports:
       - '18080:80'
   web:
