@@ -6,14 +6,19 @@ services:
     ports:
       - '18080:80'
     volumes:
-      - /var/www/html/modules
-      - /var/www/html/profiles
-      - /var/www/html/themes
-      # this takes advantage of the feature in Docker that a new anonymous
-      # volume (which is what we're creating here) will be initialized with the
-      # existing content of the image at the same location
-      - /var/www/html/sites
+      - drupal-modules:/var/www/html/modules
+      - drupal-profiles:/var/www/html/profiles
+      - drupal-sites:/var/www/html/sites
+      - drupal-themes:/var/www/html/themes
   postgres:
     image: postgres:10.3
     environment:
       - POSTGRES_PASSWORD=supers3cret
+    volumes:
+      - pgsql-data:/var/lib/postgresql/data
+volumes:
+  drupal-modules:
+  drupal-profiles:
+  drupal-sites:
+  drupal-themes:
+  pgsql-data:
