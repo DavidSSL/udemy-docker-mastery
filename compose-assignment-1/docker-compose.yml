@@ -5,6 +5,14 @@ services:
     image: drupal:8.5.2-apache
     ports:
       - '18080:80'
+    volumes:
+      - /var/www/html/modules
+      - /var/www/html/profiles
+      - /var/www/html/themes
+      # this takes advantage of the feature in Docker that a new anonymous
+      # volume (which is what we're creating here) will be initialized with the
+      # existing content of the image at the same location
+      - /var/www/html/sites
   postgres:
     image: postgres:10.3
     environment:
