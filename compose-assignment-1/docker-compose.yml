@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  drupal:
+    image: drupal:8.5.2-apache
+    ports:
+      - '18080:80'
+  postgres:
+    image: postgres:10.3
+    environment:
+      - POSTGRES_PASSWORD=supers3cret
